@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Kerla Tourism</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+	<link rel ="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/logs.css">
+
+</head>
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light">
+  		<div class="container-fluid">
+        <a class="navbar-brand" href="index.html">
+        <img src="image/kerala.jfif" alt="pic" width="60" height="60"><strong>  Kerala Tourism</strong>
+        </a>
+      </div>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  		</button>
+  		<div class="collapse navbar-collapse" id="navbarNav">
+    		<ul class="navbar-nav">
+      			<li class="nav-item active">
+        			<a class="nav-link" href="index.html"><strong>Home</strong><span class="sr-only"></span></a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="district.html"><strong>Districts</strong></a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="about.html"><strong>About</strong></a>
+      			</li>
+    		</ul>
+    		<ul class ="navbar-nav ml-auto">
+    			<li class="nav-item">
+        			<a class="nav-link" href="register.html"><strong>Register</strong></a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" href="login.html"><strong>Login</strong></a>
+      			</li>
+      
+      		</ul>
+  		</div>
+		</nav>
+	</header>
+  <div class ="loginbox">
+    
+   <h1>LOGIN</h1>
+    <form class="form" id="form">
+      <div class = "form-control">  
+          <label>Email</label>
+          <input type="text" name="" id = "email" placeholder="Email">
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-times-circle"></i>
+          <small>Error Msg</small>
+        </div>
+        <div class="form-control">
+          <label>Password</label>
+          <input type="password" name="" id = "password" placeholder="Password">
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-times-circle"></i>
+          <small>Error Msg</small> 
+        </div>
+          <input type="submit" name ="" value="Login" class="btn">
+    </form>     
+  </div>
+   <script type="text/javascript">
+    const form = document.getElementById('form');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+  
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    validate();
+  })
+
+  const isEmail = (emailVal) => {
+    var atSymbol = emailVal.indexOf("@");
+    if(atSymbol < 1) return false;
+    var dot = emailVal.lastIndexOf('.');
+    if(dot <= atSymbol + 2) return false;
+    if(dot ===emailVal.length-1) return false;
+    return true;
+
+  }
+
+  const validate = () => {
+  const emailVal = email.value.trim();
+  const passwordVal = password.value.trim();
+  
+  if(emailVal === "")
+  {
+    setErrorMsg(email, 'email cannot be blank');
+  }
+  else if(!isEmail(emailVal)){
+    setErrorMsg(email, 'Not a Valid Email');
+
+  }
+  else{
+    setSuccessMsg(email);
+  }
+  if(passwordVal === "")
+  {
+    setErrorMsg(password, 'password cannot be blank');
+  }
+  else if(passwordVal.length < 8){
+    setErrorMsg(password, 'Not Valid minimum 8 characters');
+  }
+  else{
+    setSuccessMsg(password);
+  }
+ 
+
+}
+function setErrorMsg(input, errormsgs){
+    const formControl = input.parentElement;
+    const small = formControl.querySelector('small');
+    formControl.className = "form-control error";
+    small.innerText = errormsgs;
+  }
+  function setSuccessMsg(input) {
+    const formControl = input.parentElement;
+    formControl.className = "form-control success";
+  }
+  </script>
+</body>
+</html> 
+
+   
